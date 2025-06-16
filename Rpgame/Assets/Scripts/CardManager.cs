@@ -60,7 +60,7 @@ public class CardManager : MonoBehaviour
         playerHand.RemoveCard(cardDisplay);
         
         // Opcional: adiciona ao descarte
-        discardPile.AddCard(cardDisplay.GetCard());
+        //discardPile.AddCard(cardDisplay.GetCard());
         
         // Destroi o objeto da carta
         Destroy(cardDisplay.gameObject);
@@ -84,7 +84,7 @@ public class CardManager : MonoBehaviour
     public void UseCard(CardDisplay cardDisplay)
     {
         Card usedCard = cardDisplay.GetCard();
-        discardPile.AddCard(usedCard);
+        //discardPile.AddCard(usedCard);
         playerHand.RemoveCard(cardDisplay);
     }
     
@@ -98,6 +98,6 @@ public class CardManager : MonoBehaviour
         List<Card> discardedCards = discardPile.GetAllCards();
         playerDeck.AddCards(discardedCards);
         playerDeck.Shuffle();
-        discardPile.Clear();
+        //discardPile.Clear();
     }
 }

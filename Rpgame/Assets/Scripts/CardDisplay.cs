@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image), typeof(Canvas))]
+[RequireComponent(typeof(Image))]
 public class CardDisplay : MonoBehaviour, IPointerClickHandler
 {
     [Header("Referências")]
@@ -18,14 +18,14 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
     private int originalSortingOrder;
     private bool isHovering = false;
 
-    public void Initialize(Card card, Vector3 position)
+    public void Initialize(Card card)
     {
         currentCard = card;
-        targetPosition = position;
+        //targetPosition = position;
         cardImage.sprite = card.cardImage;
 
         originalScale = transform.localScale;
-        originalSortingOrder = GetComponent<Canvas>().sortingOrder;
+        //originalSortingOrder = GetComponent<Canvas>().sortingOrder;
         cardImage = GetComponent<Image>();
         
         // Garante que a Image é interativa (Raycast Target deve estar ativado no Inspector)
@@ -37,17 +37,18 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
     
     private void Update()
     {
-        if (!isHovering)
+        /*if (!isHovering)
         {
             transform.position = Vector3.Lerp(transform.position, targetPosition, CardManager.Instance.CardMoveSpeed * Time.deltaTime);
-        }
+        }*/
     }
     
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log("teste");
         isHovering = true;
         transform.localScale = originalScale * hoverScale;
-        GetComponent<Canvas>().sortingOrder = originalSortingOrder + 5;
+        //GetComponent<Canvas>().sortingOrder = originalSortingOrder + 5;
         transform.position = targetPosition + new Vector3(0, hoverYOffset, 0);
     }
     
@@ -55,7 +56,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
     {
         isHovering = false;
         transform.localScale = originalScale;
-        GetComponent<Canvas>().sortingOrder = originalSortingOrder;
+       
     }
     
     public void HandleCardClick()
